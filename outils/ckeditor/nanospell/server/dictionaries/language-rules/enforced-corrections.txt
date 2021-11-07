@@ -1,0 +1,4 @@
+PHPSpellcheck--> PHPSpellCheck || PHP Spell Check
+cos--> because
+pcq-->parce que
+pkoi-->pourquoi

@@ -1,0 +1,6 @@
+*.php~
+*.js~
+*.htm~
+*.html~
+temp/*
+Jeux/*

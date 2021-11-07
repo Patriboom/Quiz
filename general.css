@@ -1,0 +1,131 @@
+body {
+	background-color: #000000;
+	color: #f5deb3;
+}
+a.AdminQuest {
+	font-size: 25pt;
+	text-decoration: none;
+	padding: 4px 8px;
+	background-color: green;
+	color: wheat;
+}
+a.AdminQuest:hover {
+	text-decoration: underline;
+	background-color: black;
+	color: white;
+}
+.Question {
+	background-color: white;
+	color: black;
+	font-size: 240%;
+	padding: 5px 15px 20px 4px;
+	position: relative;
+	text-align: center;
+	width: 100%;
+	z-index: 5;
+}
+.Questions {
+	background-color: purple;
+	position: relative;
+	width: 100%;
+}
+.QuizCorpus {
+	position: relative;
+	width: 70%;
+}
+.Reponse {
+	font-size: 180%;
+}
+.Bouton_Turquoise {
+	background-color: turquoise; 
+	color: black; 
+	padding: 7px;
+	border: solid 2px navy; 
+	border-radius: 10px; 
+	font-size: 18pt; 
+	font-weight: bold;"
+}
+.Bouton_Turquoise:hover {
+	background-color: navy; 
+	color: white; 
+	border: solid 3px blue; 
+}
+.Options, .MaRep, .NonRep, .BonneRep, .ErreurRep {
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 10px;
+	border-color: black;
+	color: black;
+	float: left;
+	font-size: 180%;
+	margin: 5px 15px 4px 20px;
+	min-height: 50px;
+	position: relative;
+	text-align: center;
+	vertical-align: middle;
+	width: 45%;
+	z-index: 10;
+}
+.Options {
+	background-image: linear-gradient(navy, white, #9999FF, #6666FF, #3333FF, navy);
+}
+.Options:hover, .MaRep {
+	background-image: linear-gradient(orange, white, yellow, yellow, orange);
+}
+.NonRep {
+	background-image: linear-gradient(navy, grey, #999999, #666666, #333333, navy);
+}
+.BonneRep {
+	background-image: linear-gradient(navy, white, #99FF99, #66FF66, #33FF33, navy);
+}
+.ErreurRep {
+	background-image: linear-gradient(navy, white, #FF9999, #FF6666, #FF3333, navy);
+}
+.Stat, .StatImg {
+	color: red;
+	font-size: 200%;
+	position: absolute;
+}
+.Stat {
+	right: 9%;
+	top: 5%;
+}
+.StatImg {
+	left: 40%;
+	top: 15%;
+	background-color: transparent;
+	z-index: 20;
+}
+
+
+@media only screen and (min-width: 600px) {
+	.QuizCorpus {
+		position: relative;
+		width: 90%;
+	}
+	.Options, .MaRep, .NonRep, .BonneRep, .ErreurRep {
+		width: 90%;
+	}
+}
+
+
+@media only screen and (min-width: 800px) {
+	.QuizCorpus {
+		position: relative;
+		width: 80%;
+	}
+	.Options, .MaRep, .NonRep, .BonneRep, .ErreurRep {
+		width: 90%;
+	}
+}
+
+
+@media only screen and (min-width: 1200px) {
+	.QuizCorpus {
+		position: relative;
+		width: 70%;
+	}
+	.Options, .MaRep, .NonRep, .BonneRep, .ErreurRep {
+		width: 45%;
+	}
+}
