@@ -46,10 +46,13 @@
 </head>
 <body>
 <?php
-	include "config.app.php";
+	if (!file_exists("config.app.php")) { 
+		copy ("config.app.example", "config.app.php"); 
+	} else {
+		include "config.app.php";
+	}
 ?>
 <img src="images/Quiz_1.jpg" alt="" />
-	<br /><br />
 	<div style="text-align: center; font-size: 140%;">
 	<h1>Quiz pour tout, quiz pour tous / Quiz for all</h1>
 	<h2>Administration du système / System administrator</h2>

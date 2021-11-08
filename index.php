@@ -7,6 +7,13 @@
 </head>
 <body>
 <img src="images/Quiz_1.jpg" alt="" />
+<?php
+	if (!file_exists("config.app.php")) { 
+		echo '<script>document.location.href="Administrateur.php";</script>'; 
+	} else {
+		include "config.app.php";
+	}
+?>
 	<br /><br />
 	<div style="text-align: center; font-size: 140%;">
 	<h1>Quiz pour tout, quiz pour tous / Quiz for all</h1>

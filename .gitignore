@@ -4,3 +4,4 @@
 *.html~
 temp/*
 Jeux/*
+config.app.php
