@@ -148,7 +148,6 @@
 				echo '<input name="BonneRep" value="6" type="radio" />';
 				echo 'Réponse 6 / Answer 6 : <input name="Reponse[6]" value="" type="text" />';
 				echo '<br /><br />';
-			}
 				echo 'Explications de la bonne réponse / Explain here the correct answer<br />';
 				echo '<div style="position: relative; left: 25%;">';
 				echo '<textarea id="Explication" name="Explication" rows="5" cols="70"></textarea>';
@@ -157,12 +156,12 @@
 		?>		
 		<script src="outils/ckeditor/ckeditor.js"></script>
 		<script>
-//			CKEDITOR.replace( 'Question', { 
-//				toolbar : 'Full',
-//				filebrowserImageBrowseUrl : 'outils/ckeditor_ChoisirImage.php', 
-//				filebrowserImageUploadUrl : 'outils/ckeditor_RecevoirImage.php',
-//				width : '800'
-//			} );
+			CKEDITOR.replace( 'Question', { 
+				toolbar : 'Full',
+				filebrowserImageBrowseUrl : 'outils/ckeditor_ChoisirImage.php', 
+				filebrowserImageUploadUrl : 'outils/ckeditor_RecevoirImage.php',
+				width : '800'
+			} );
 			CKEDITOR.replace( 'Explication', { 
 				toolbar : 'Full',
 				filebrowserImageBrowseUrl : 'outils/ckeditor_ChoisirImage.php', 
@@ -170,6 +169,7 @@
 				width : '800'
 			} );
 		</script>
+		<?php	} ?>
 		<input name="Soumettre" type="submit" id="input_SoumettreConf" value="Soumettre / Submit" class="Bouton_Turquoise"/>
 	</form>
 	<br /><br />
