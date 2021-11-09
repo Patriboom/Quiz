@@ -56,7 +56,7 @@ function AffichonsRep(contenu) {
 			if (x == LaRep && x == DernRep ) { 
 				NbBnRep = NbBnRep + 1;
 				var ok = Math.ceil(Math.random() * 2);
-				document.getElementById('StatsImage').innerHTML = '<img src="images/OK_ClinDoeil_300_' + ok + '.png" />';
+				document.getElementById('StatsImage').innerHTML = '<img src="images/reactions/OK_ClinDoeil_300_' + ok + '.png" />';
 				setTimeout(function() {document.getElementById('StatsImage').innerHTML = ''; },3567) 
 			} 
 			if (x != LaRep && x == DernRep) { document.getElementById('Rep' + x).className = 'ErreurRep'; } 

@@ -19,6 +19,7 @@
 session_start();
 include_once "Langues/FR/Quiz.php";
 include_once "Langues/FR/Anim_Quiz.php";
+include "config.app.php";
 
 echo '<img src="images/Quiz.png" width="154" height="150" align="left" style="position: absolute; top: 3px; left: 15px;") />';
 echo '<br />';
@@ -104,7 +105,7 @@ if (isset($_POST["Resultat"]) && isset($_POST["Quel"])) {
 		echo '<ul>';
 		foreach ($resu as $Eleve) {
 			if ($Eleve == '.' || $Eleve == '..') { continue; }
-			if (substr($Eleve, 0, 9) == "Patriboom") { continue; }
+			if (trim($Eleve) == $config['AdminName']) { continue; }
 			if (substr($Eleve, strpos($Eleve, "_")+1, 8) != date("Ymd")) { continue; }
 			if (file_exists("temp/".$_SESSION["ChxQuiz"]."/".$_SESSION["NumMbre"]."_Fini.txt")) { continue; }
 			echo ++$compte.'. <input name="Eleve[]" value="'.$Eleve.'" type="checkbox" checked="checked" />'.substr($Eleve, 0, strpos($Eleve, "_")) .'<br />';
@@ -119,7 +120,14 @@ if (isset($_POST["Resultat"]) && isset($_POST["Quel"])) {
 			//Délai de réponse
 			echo $Lng_Admin_Cours_Quiz[12].' : <input name="DelaiMax" value="30" type="number" size="4" max="100" min="0" style="background-color: #666666; color: #FFFFFF; font-size: 12pt;" /> sec.';
 			echo '<br /><br />';
-			echo '<input type="submit" name="Soumettre" id="Form_Questionne" value="Lançons le jeu" class="Bouton_Turquoise" />';	
+			echo '<input type="submit" name="Soumettre" id="Form_Questionne" value="Lançons le jeu" class="Bouton_Turquoise" />';
+			echo '&nbsp;&nbsp;&nbsp;&nbsp;';
+			echo '&nbsp;&nbsp;&nbsp;&nbsp;';
+			echo '<input type="button" name="Retour" id="Form_Retour" value="Annuler" style="background-color: #990000; color: white;" onclick="javascript: document.location.href = \'index.php\';" />';	
+			echo '<br /><br /><br />';
+			echo '<br /><br /><br />';
+			echo '<br /><br /><br />';
+			echo '<input type="button" name="Nouveau" id="Form_Nouveau" value="Créer un nouveau Quiz" class="Bouton_Turquoise" onclick="javascript: document.location.href = \'Administrateur.php\';" />';	
 			echo '<br /><br /><br />';
 	
 			echo '</ul>';

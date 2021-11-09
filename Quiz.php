@@ -6,11 +6,26 @@
 <link rel=stylesheet HREF="general.css" TYPE="text/css">
 </head>
 <body>
+<script type="text/javascript" >
+var clins = new Array(
+<?php
+	$MesClins = scandir("images/reactions");
+	$lien = "";
+	foreach ($MesClins as $clin) {
+		if (strtolower(substr($Clin, -3)) != "png")  { continue; }
+		echo $lien.' "'.$clin.'"';
+		$lien = ",";
+	}
+ 
+?>
+);
+</script>
 <script type="text/javascript" src="scripts/Quiz.js" ></script>
 <br /><br />
 <form name="Questionne" id="FormQuestionne" action="Quiz.php" method="POST">
 <?php
 	session_start();
+	include "config.app.php";
 	$ChxQuiz = $_POST["ChxQuiz"] ?? $_GET["ChxQuiz"] ?? "Vide";
 	$_SESSION["ChxQuiz"] = $ChxQuiz;
 	if ($ChxQuiz == "Vide" ) {
@@ -24,11 +39,11 @@
 		if (!file_exists("temp/".$_SESSION["ChxQuiz"])) {
 			mkdir("temp/".$_SESSION["ChxQuiz"]);
 		}
-		if ($_POST["pseudo"] == 'Patriboom') {
+		if ($_POST["pseudo"] == $config['AdminName']) {
 			file_put_contents("temp/".$_SESSION["ChxQuiz"]."/Prof.htm", "Début à ".date("H:i:s")." ce ".date("Y-m-d")."\n".$_SESSION["ChxQuiz"]);
 			echo '<script>document.location.href="Anim.php";</script>';
 		}
-		if (!file_exists("temp/".$_SESSION["ChxQuiz"]."/".$_SESSION["NumMbre"]) && $_POST["pseudo"] != 'Patriboom') {
+		if (!file_exists("temp/".$_SESSION["ChxQuiz"]."/".$_SESSION["NumMbre"]) && $_POST["pseudo"] != $config['AdminName']) {
 			mkdir("temp/".$_SESSION["ChxQuiz"]."/".$_SESSION["NumMbre"]);
 		}
 
