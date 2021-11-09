@@ -7,11 +7,13 @@
 <?php
 	session_start();
 	$prefixe = "";
+	$def = false;
 
 	//Chargement du fichier de configurations
 	if (!file_exists("config.app.php")) { 
 		////S'il n'existe pas, nous en créons un à partir du modèle
-		copy ("config.app.example", "config.app.php"); 
+		copy ("config.app.example", "config.app.php");
+		$def = true; 
 	}
 	include "config.app.php";
 
@@ -94,7 +96,8 @@
 
 
 	<br /><br />
-	<h3>Options de configuration / Config options</h3>
+	<details id="det_configLocales" <?php echo ($def) ? 'open="open"' : '' ?> style="background-color: #000610;" >
+	<summary style="background-color: #0f1330;">Options de configuration / Config options</summary>
 	<form name="Questionne" id="FormQuestionne" action="Administrateur.php?Quoi=Options" method="POST">
 		<?php
 			foreach ($config as $ind => $val) {
@@ -105,10 +108,10 @@
 		<input name="Soumettre" type="submit" id="input_SoumettreConf" value="Soumettre / Submit" class="Bouton_Turquoise"/>
 		
 	</form>
-	<br /><br />
-	<hr />
-	<br /><br />
-	<h3>Créer un quiz / Create new quiz</h3>
+	</details>
+	<br />
+	<details id="det_questionsReponses" <?php echo (!$def) ? 'open="open"' : '' ?> style="background-color: #001919;">
+	<summary style="background-color: #234646;">Créer un quiz / Create new quiz</summary>
 	<form name="Questionne" id="FormQuestionne" action="Administrateur.php?Quoi=Creons" method="POST">
 		<?php
 		echo '<br /><br />';
@@ -172,8 +175,8 @@
 		<?php	} ?>
 		<input name="Soumettre" type="submit" id="input_SoumettreConf" value="Soumettre / Submit" class="Bouton_Turquoise"/>
 	</form>
-	<br /><br />
-	<hr />
+	</details>
+	<br />
 	<a href="index.php">Lancer un quiz (Jouer) / start a game (Let play!)</a>
 	<br /><br />
 </body>

@@ -37,7 +37,7 @@ a.AdminQuest:hover {
 	font-size: 180%;
 }
 .Bouton_Turquoise {
-	background-color: turquoise; 
+	background-color: #a179e6; 
 	color: black; 
 	padding: 7px;
 	border: solid 2px navy; 
@@ -46,7 +46,7 @@ a.AdminQuest:hover {
 	font-weight: bold;"
 }
 .Bouton_Turquoise:hover {
-	background-color: navy; 
+	background-color: #1a1d4a; 
 	color: white; 
 	border: solid 3px blue; 
 }
