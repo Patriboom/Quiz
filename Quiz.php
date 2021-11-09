@@ -9,16 +9,18 @@
 <script type="text/javascript" >
 var clins = new Array(
 <?php
+	$compte = 0;
 	$MesClins = scandir("images/reactions");
 	$lien = "";
 	foreach ($MesClins as $clin) {
-		if (strtolower(substr($Clin, -3)) != "png")  { continue; }
+		if (strtolower(substr($clin, -3)) != "png")  { continue; }
 		echo $lien.' "'.$clin.'"';
 		$lien = ",";
+		$compte = $compte + 1;
 	}
- 
 ?>
 );
+	var nbImg = <?php echo $compte; ?>;
 </script>
 <script type="text/javascript" src="scripts/Quiz.js" ></script>
 <br /><br />
@@ -63,7 +65,7 @@ var clins = new Array(
 			<input name="chronoDebut" id="chrono_debut" value="" type="hidden" />
 			<input name="chronoFin" id="chrono_fin" value="" type="hidden" />
 			<div id="Corpus" class="QuizCorpus">
-			<h2 id="H2_rebours"><img src="images/BullesMontant.gif" height="125" align="left" /><?php echo $ChxQuiz; ?> commencera dans <span id="span_rebours"> ... </span> secondes</h2>
+			<h2 id="H2_rebours"><?php echo $ChxQuiz; ?> commencera dans <span id="span_rebours"> ... </span> secondes</h2>
 			<div id="Questions">Préparez-vous !</div>
 			<br clear="all" />
 			<div id="Reponse" class="Reponse"></div>

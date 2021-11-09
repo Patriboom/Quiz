@@ -55,8 +55,9 @@ function AffichonsRep(contenu) {
 			if (x == LaRep ) { document.getElementById('Rep' + x).className = 'BonneRep';  } 
 			if (x == LaRep && x == DernRep ) { 
 				NbBnRep = NbBnRep + 1;
-				var ok = Math.ceil(Math.random() * 2);
-				document.getElementById('StatsImage').innerHTML = '<img src="images/reactions/OK_ClinDoeil_300_' + ok + '.png" />';
+				var ok = Math.ceil(Math.random() * nbImg);
+				var cetteImg = clins[ok];
+				document.getElementById('StatsImage').innerHTML = '<img src="images/reactions/' + clins[ok] + '" />';
 				setTimeout(function() {document.getElementById('StatsImage').innerHTML = ''; },3567) 
 			} 
 			if (x != LaRep && x == DernRep) { document.getElementById('Rep' + x).className = 'ErreurRep'; } 
