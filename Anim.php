@@ -62,7 +62,7 @@ if (isset($_POST["Resultat"]) && isset($_POST["Quel"])) {
 	echo '<div id="RepQuestion" style="position: absolute; top: 550px;"></div>';
 	echo '<div id="StatsPerso"></div>';
 	echo '&nbsp;&nbsp;';
-	echo '<div style="position: absolute; top: 20px; left: 1400px; z-index: 100;" >';
+	echo '<div style="position: absolute; top: 20px; left: 90%; z-index: 100;" >';
 	echo '<input name="Clore" id="input_clore" value="'.$Lng_Admin_Cours_Quiz[16].'" type="button" onclick="Terminer();" style="background-color: red; color: white; font-size: 140%; border-spacing: 3px; border-color: black; border-style: solid; margin: 3px; border-radius: 6px;" onmouseover="this.style.color=\'black\';" onmouseout="this.style.color=\'white\';" />';
 	echo '</div>';
 	echo '&nbsp;&nbsp;';

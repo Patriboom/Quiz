@@ -10,9 +10,8 @@
 <?php
 	if (!file_exists("config.app.php")) { 
 		echo '<script>document.location.href="Administrateur.php";</script>'; 
-	} else {
-		include "config.app.php";
 	}
+	include "config.app.php";
 ?>
 	<br /><br />
 	<div style="text-align: center; font-size: 140%;">

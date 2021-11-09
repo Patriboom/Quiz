@@ -1,0 +1,44 @@
+<?php
+	if (!isset($_SESSION)) { session_start(); }
+	echo '<script>alert("Nous sommes en ligne 3 de RecevoirImage");</script>';
+
+	if ($_FILES["upload"]['size'] > 0 ) {
+		$destination_dir = $prefixe."images/".substr($_SESSION["Repertoire"], 5);
+	echo '<script>alert("Nous sommes en ligne 6 de RecevoirImage");</script>';
+		include_once "TraiterImage.php";
+
+		$_POST["Confirmer"] = "oui";
+		$NomFinal = substr($_FILES["upload"]["name"],0, (strlen($_FILES["upload"]["name"])-4));
+		$NomFinal = str_replace(" ", "", $NomFinal);
+	echo '<script>alert("Nous sommes en ligne 12 de RecevoirImage");</script>';
+		Telechargement ($_FILES["upload"], $destination_dir, $NomFinal, $LargeurFinale = 450, $HauteurFinale = 300, $Sens = "Horiz");
+	echo '<script>alert("Nous sommes en ligne 14 de RecevoirImage");</script>';
+		
+?>
+		<script>
+		alert("Nous avons réussi le chargement, nous aménagerons ci-bas les boutons du formulaire");
+			for(NumRef=90; NumRef<1900; NumRef++) {
+				if (parent.document.getElementById('cke_' + NumRef + '_label')) {
+					if (parent.document.getElementById('cke_' + NumRef + '_label').innerHTML == 'OK') {
+						break; 
+					}
+				}
+			}
+			//De base, on peut attendre que le bouton OK porte le numéro 138
+			//Dans ce cas, les valeurs qui nous intéressent seront 57, 67, 70, 76, 79, 82, 85 et 138
+			//Ddonc les valeurs calculées se font en soustrayant   81, 71, 68, 62, 59, 56, 53 et 0
+			parent.document.getElementById('cke_' + (NumRef - 81) + '_textInput').value = "<?php echo substr($destination_dir, 3).'/'.$_FILES["upload"]["name"]; ?>";
+			parent.document.getElementById('cke_' + (NumRef - 71) + '_textInput').value = "200";
+//			parent.document.getElementById('cke_' + (NumRef - 68) + '_textInput').value = "150";
+			parent.document.getElementById('cke_' + (NumRef - 62) + '_textInput').value = "0";
+			parent.document.getElementById('cke_' + (NumRef - 59) + '_textInput').value = "15";
+			parent.document.getElementById('cke_' + (NumRef - 56) + '_textInput').value = "15";
+			parent.document.getElementById('cke_' + (NumRef - 53) + '_select').selectedIndex = 1;
+			parent.document.getElementById('cke_' + (NumRef - 45) + '_uiElement').style.display = 'block';
+//			parent.document.getElementById('cke_' + (NumRef - 0) + '_label').click();
+		</script>
+		
+<?php
+	} else {
+		echo '<script>alert("Erreur de réception du fichier.\n'.$MsgErr[$_FILES['upload']['error']].'");</script>';
+	}

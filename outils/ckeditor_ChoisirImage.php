@@ -13,7 +13,7 @@
 <table width="100%"><tr>
 <?php
 $prefixe = $_SESSION["prefixe"] ?? "../";
-$chemin = $prefixe."images/".substr($_SESSION["Repertoire"], 5);
+$chemin = $prefixe."images/".$_SESSION["Repertoire"];
 //var_dump($_SESSION);
 
 $NomFichier = array();

@@ -7,10 +7,51 @@
 <?php
 	session_start();
 	$prefixe = "";
+
+	//Chargement du fichier de configurations
+	if (!file_exists("config.app.php")) { 
+		////S'il n'existe pas, nous en créons un à partir du modèle
+		copy ("config.app.example", "config.app.php"); 
+	}
+	include "config.app.php";
+
+	//Modifications demandées par l'usager
 	if (isset($_POST["Soumettre"]) && isset($_GET["Quoi"])) {
 		if ($_GET["Quoi"] == 'Options') {
+			//Sauvegarde du fichier précédent
+			$SavFichier = "config.app.".date("Ymdhis").".php";
+			copy ($prefixe."config.app.php", $prefixe.$SavFichier);
+			unset($_POST["Soumettre"]);
+
+			//Modifications au fichier de configuration
+			$rendu = 0;
+			$RefFichier = fopen("config.app.php", "r");
+			while (!feof($RefFichier)) {
+				$MesLignes[$rendu] = fgets($RefFichier);
+				foreach($_POST as $ind => $val) {
+					if (strpos($MesLignes[$rendu], "'".$ind."'") !== false && !isset($NumLigne[$ind]))  { 
+						$NumLigne[$ind] = $rendu; 
+						$MesLignes[$rendu] = substr($MesLignes[$rendu], 0, strpos($MesLignes[$rendu], '=>')+2)." '".$val."',
+	";
+					}
+				}
+				++$rendu;
+			}
+			fclose($RefFichier);
+
+			//Enregistrement du nouveau fichier corrigé  
+			$NeoFichier = fopen("config.app.php", "w");
+			foreach ($MesLignes as $ind => $val) {
+				fwrite($NeoFichier, $val);
+			}
+			fclose($NeoFichier);
+			$config = $_POST;
+			////Fin de la modification du fichier config.app.php
+			
 		} elseif ($_GET["Quoi"] == 'Creons') {
+			//Modidfications à un questionnaire
 			if ($_POST["Fonction"] == "Creons") {
+				////Première étape de création:  le nom
 				$_SESSION["Repertoire"] = $prefixe."Jeux/".$_POST["NomJeu"];
 				if (!file_exists($prefixe."images/".$_POST["NomJeu"])) 	{ mkdir ($prefixe."images/".$_POST["NomJeu"]); }
 				if (!file_exists($_SESSION["Repertoire"])) 					{ mkdir ($_SESSION["Repertoire"]); }
@@ -21,6 +62,7 @@
 				$_SESSION["CreonsCeci"] = 'Question';
 				$_SESSION["NumQuestion"] = 1;
 			} elseif ($_POST["Fonction"] == "Question") {
+				////Deuxième étape de création:  une questions, ses réponses, ses explications
 				$_SESSION["Repertoire"] = $_POST["NomJeu"];
 				$_SESSION["NumQuestion"] = $_POST["NumQuestion"] + 1;
 				$_SESSION["CreonsCeci"] = 'Question';
@@ -45,13 +87,6 @@
 ?>
 </head>
 <body>
-<?php
-	if (!file_exists("config.app.php")) { 
-		copy ("config.app.example", "config.app.php"); 
-	} else {
-		include "config.app.php";
-	}
-?>
 <img src="images/Quiz_1.jpg" alt="" />
 	<div style="text-align: center; font-size: 140%;">
 	<h1>Quiz pour tout, quiz pour tous / Quiz for all</h1>
@@ -68,6 +103,7 @@
 		?>	
 		<br /><br />
 		<input name="Soumettre" type="submit" id="input_SoumettreConf" value="Soumettre / Submit" class="Bouton_Turquoise"/>
+		
 	</form>
 	<br /><br />
 	<hr />
@@ -112,6 +148,7 @@
 				echo '<input name="BonneRep" value="6" type="radio" />';
 				echo 'Réponse 6 / Answer 6 : <input name="Reponse[6]" value="" type="text" />';
 				echo '<br /><br />';
+			}
 				echo 'Explications de la bonne réponse / Explain here the correct answer<br />';
 				echo '<div style="position: relative; left: 25%;">';
 				echo '<textarea id="Explication" name="Explication" rows="5" cols="70"></textarea>';
@@ -120,12 +157,12 @@
 		?>		
 		<script src="outils/ckeditor/ckeditor.js"></script>
 		<script>
-			CKEDITOR.replace( 'Question', { 
-				toolbar : 'Full',
-				filebrowserImageBrowseUrl : 'outils/ckeditor_ChoisirImage.php', 
-				filebrowserImageUploadUrl : 'outils/ckeditor_RecevoirImage.php',
-				width : '800'
-			} );
+//			CKEDITOR.replace( 'Question', { 
+//				toolbar : 'Full',
+//				filebrowserImageBrowseUrl : 'outils/ckeditor_ChoisirImage.php', 
+//				filebrowserImageUploadUrl : 'outils/ckeditor_RecevoirImage.php',
+//				width : '800'
+//			} );
 			CKEDITOR.replace( 'Explication', { 
 				toolbar : 'Full',
 				filebrowserImageBrowseUrl : 'outils/ckeditor_ChoisirImage.php', 
@@ -133,7 +170,6 @@
 				width : '800'
 			} );
 		</script>
-		<?php	} ?>
 		<input name="Soumettre" type="submit" id="input_SoumettreConf" value="Soumettre / Submit" class="Bouton_Turquoise"/>
 	</form>
 	<br /><br />
