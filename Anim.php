@@ -77,7 +77,7 @@ if (isset($_POST["Resultat"]) && isset($_POST["Quel"])) {
 		<input name="chronoDebut" id="chrono_debut" value="" type="hidden" />
 		<input name="chronoFin" id="chrono_fin" value="" type="hidden" />
 		<div id="div_jeuResultat" style="background-color: #CCCCCC; color: darkgreen; float: none; text-align: left;"></div>
-		<div id="div_jeuReponses" style="background-color: #323232; color: #9898CC; position: absolute; top: 650px; left: 900px;">Ici</div>
+		<div id="div_jeuReponses" style="background-color: #323232; color: #9898CC; position: absolute; top: 650px; left: 900px;"></div>
 		<input name="Soumettre" value="Soumettre" type="hidden" />
 		<input name="mod" value="Admin" type="hidden" />
 		<input name="fct" value="Cours" type="hidden" />
@@ -142,6 +142,10 @@ if (isset($_POST["Resultat"]) && isset($_POST["Quel"])) {
 			echo '<input name="Quel" value="'.$_SESSION["ChxQuiz"].'" type="hidden" />';
 			echo '<input name="IDcrs" value="'.$_SESSION["ChxQuiz"].'" type="hidden" />';
 			echo '<input name="Resultat" value="Debut" type="hidden" />';
+			
+			//Dans sa forme actuelle, le formulaire du choix des participants et de la durée ne sert à rien
+			//C'est pourquoi il sera automatiquement soumis par la ligne ci-bas
+			echo '<script>document.getElementById(\'Form_Questionne\').click();</script>';
 			echo '</form>';
 		}
 	}

@@ -75,16 +75,18 @@ var clins = new Array(
 	
 		<div id="Discussion" class="QuizDicussion"></div>
 	</div>
+	<div id="div_rebours" style="position: absolute; top: 10px; right: 10px;"></div>
 <?php } ?>
 </form>
 <script>
+var attente = 5;
+var DelaiSecondes = <?php echo $config["Delai"]; ?>;
 var rebours = 0;
-var delai = 5;
 	    	
  var delayons = setInterval(
  	function() { 
- 		document.getElementById('span_rebours').innerHTML = (delai-(rebours++));
- 		if (rebours > delai ) { Commencons('FR', '<?php echo $ChxQuiz; ?>'); }
+ 		document.getElementById('span_rebours').innerHTML = (attente-(rebours++));
+ 		if (rebours > attente ) { Commencons('FR', '<?php echo $ChxQuiz; ?>'); }
  
  	}, 1000);	
 </script>

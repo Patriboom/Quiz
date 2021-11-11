@@ -1,5 +1,6 @@
 var attendre = 0;
-var delai;
+var attente;
+var Delai = ""; 
 var DernRep = 0;
 var duree = 30;
 var faites = new Array;
@@ -7,6 +8,7 @@ var Jeu;
 var NbQuest = 0;
 var NbBnRep = 0;
 var Question = 0;
+var rebours = 0;
 var rendu = 0;
 
 function ChxQuestion(Jeu) {
@@ -44,12 +46,31 @@ function AffichonsQuest(Quoi, Quelle) {
  	document.getElementById('Reponse').innerHTML = "";
  	document.getElementById('StatsImage').innerHTML = '';
 	DernRep = 0;
-	NbQuest = NbQuest + 1; 
+	NbQuest = NbQuest + 1;
+	Delai = setInterval(function () { DelaiRep (); }, (1000)); 
+}
+
+function DelaiRep () {
+	if (DelaiSecondes == rebours) {
+		clearInterval(Delai);
+		for (x=1; x<7; x++) {
+			if (document.getElementById('Rep' + x)) {
+				document.getElementById('Rep' + x).className = 'NonRep';
+			}
+		}
+	} else {
+		document.getElementById('div_rebours').innerHTML = (DelaiSecondes - rebours);
+		rebours = rebours + 1;
+	}
+	 
 }
 
 function AffichonsRep(contenu) {
 	var LaRep = parseInt(contenu[1]);
-	for (x=1; x<5; x++) {
+	clearTimeout(Delai);
+	rebours = 0;
+	document.getElementById('div_rebours').innerHTML = (DelaiSecondes - rebours);
+	for (x=1; x<7; x++) {
 		if (document.getElementById('Rep' + x)) {
 			document.getElementById('Rep' + x).className = 'NonRep';
 			if (x == LaRep ) { document.getElementById('Rep' + x).className = 'BonneRep';  } 
@@ -64,7 +85,6 @@ function AffichonsRep(contenu) {
 		}
 	}
 	document.getElementById('Reponse').innerHTML = '<div style="text-align: left;"><ul>' + contenu[2] + '</ul></div>';
-//	document.getElementById('Reponse').innerHTML = '<iframe src="Jeux/LesAmisDabord/Rep_04.htm">' + contenu[2] + '</iframe>';
 	document.getElementById('StatsPerso').innerHTML = NbBnRep + " / " + NbQuest;
 }
 
@@ -73,11 +93,12 @@ function Commencons(Quoi, Choix) {
 	clearInterval(delayons);  
 	document.getElementById('H2_rebours').innerHTML = "<h2 style=\"color: green;\">" + Choix + "</h2>";
 	document.getElementById('Questions').innerHTML = "";
-	delai = setInterval(function() { ChxQuestion(); }, 1000);
+	attente = setInterval(function() { ChxQuestion(); }, 1000);
 }
 
 function MaRep(Rep) {
 	if (DernRep != 0) { return true;  }
+	if (DelaiSecondes == rebours) { alert("Délai dépassé"); return true; }
 	DernRep = Rep;
 	for (x=1; x<5; x++) {
 		if (document.getElementById('Rep' + x)) { 
@@ -110,7 +131,7 @@ function MaRep(Rep) {
 }
 
 function Terminer() {
-	clearInterval(delai);
+	clearInterval(attente);
 	document.getElementById('FormQuestionne').submit();
 	setTimeout(function() { document.location.href = "index.php?mod=Cours"; }, 7543);
 }
