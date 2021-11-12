@@ -51,11 +51,11 @@ var clins = new Array(
 
 ?>
 	<div id="Global" style="text-align: center;">
-			<h1>Quiz</h1>
-			<img src="images/Quiz.png" width="154" height="150" align="left" style="position: absolute; top: 3px; left: 15px;") />
-			<br />
-			<h1 style="position: absolute; top: 5px; left: 175px;"><?php echo $_SESSION["ChxQuiz"]; ?></h1>
-			<br clear="all" />
+			<h1 id="h1_quiz">Quiz</h1>
+			<img id="img_global" src="images/Quiz.png" width="154" height="150" align="left" style="position: absolute; top: 3px; left: 15px;") />
+			<br id="br_tete1" />
+			<h1 id="h1_jeux" style="position: absolute; top: 5px; left: 175px;"><?php echo $_SESSION["ChxQuiz"]; ?></h1>
+			<br id="br_tete2" clear="all" />
 			<input name="Soumettre" value="Soumettre" type="hidden" />
 			<input name="mod" value="Admin" type="hidden" />
 			<input name="fct" value="Cours" type="hidden" />
@@ -70,7 +70,7 @@ var clins = new Array(
 			<br clear="all" />
 			<div id="Reponse" class="Reponse"></div>
 			<div id="StatsImage" class="StatImg"></div>
-			<div id="StatsPerso" class="Stat"></div>
+			<div id="StatsPerso" class="Stat" style="position: absolute; top: 0; right: 30%;"></div>
 		</div>
 	
 		<div id="Discussion" class="QuizDicussion"></div>

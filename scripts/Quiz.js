@@ -91,7 +91,20 @@ function AffichonsRep(contenu) {
 function Commencons(Quoi, Choix) {
 	Jeu = Choix;
 	clearInterval(delayons);  
-	document.getElementById('H2_rebours').innerHTML = "<h2 style=\"color: green;\">" + Choix + "</h2>";
+	//document.getElementById('H2_rebours').innerHTML = "<h2 style=\"color: green;\">" + Choix + "</h2>";
+	document.getElementById("Corpus").removeChild(document.getElementById('H2_rebours'));
+	document.getElementById("Global").removeChild(document.getElementById('h1_quiz'));
+	document.getElementById("Global").removeChild(document.getElementById('img_global'));
+	document.getElementById("Global").removeChild(document.getElementById('h1_jeux'));
+	document.getElementById("Global").removeChild(document.getElementById('br_tete1'));
+	document.getElementById("Global").removeChild(document.getElementById('br_tete2'));
+	if (document.requestFullscreen) {
+		document.requestFullscreen();
+	} else if (document.webkitRequestFullscreen) { /* Safari */
+		document.webkitRequestFullscreen();
+	} else if (document.msRequestFullscreen) { /* IE11 */
+		document.msRequestFullscreen();
+	}
 	document.getElementById('Questions').innerHTML = "";
 	attente = setInterval(function() { ChxQuestion(); }, 1000);
 }

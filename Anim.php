@@ -124,11 +124,6 @@ if (isset($_POST["Resultat"]) && isset($_POST["Quel"])) {
 			echo '&nbsp;&nbsp;&nbsp;&nbsp;';
 			echo '&nbsp;&nbsp;&nbsp;&nbsp;';
 			echo '<input type="button" name="Retour" id="Form_Retour" value="Annuler" style="background-color: #990000; color: white;" onclick="javascript: document.location.href = \'index.php\';" />';	
-			echo '<br /><br /><br />';
-			echo '<br /><br /><br />';
-			echo '<br /><br /><br />';
-			echo '<input type="button" name="Nouveau" id="Form_Nouveau" value="Créer un nouveau Quiz" class="Bouton_Turquoise" onclick="javascript: document.location.href = \'Administrateur.php\';" />';	
-			echo '<br /><br /><br />';
 	
 			echo '</ul>';
 			
@@ -148,5 +143,10 @@ if (isset($_POST["Resultat"]) && isset($_POST["Quel"])) {
 			echo '<script>document.getElementById(\'Form_Questionne\').click();</script>';
 			echo '</form>';
 		}
+		echo '<br /><br /><br />';
+		echo '<br /><br /><br />';
+		echo '<br /><br /><br />';
+		echo '<input type="button" name="Nouveau" id="Form_Nouveau" value="Créer un nouveau Quiz" class="Bouton_Turquoise" onclick="javascript: document.location.href = \'Administrateur.php\';" />';	
+		echo '<br /><br /><br />';
 	}
 }

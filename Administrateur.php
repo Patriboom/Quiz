@@ -71,7 +71,6 @@
 				$NumeroFi = substr("00".($_POST["NumQuestion"]-1), -2);
 				$NumQuest = substr("00".($_POST["NumQuestion"]-0), -2);
 				$Options  = "";
-				$Details = addslashes($_POST["Explication"]);
 				$NumRep = 1;
 				foreach ($_POST["Reponse"] as $ind => $val) {
 					if (trim($val) != '') {
@@ -82,7 +81,7 @@
 					} 
 				}
 				file_put_contents($_SESSION["Repertoire"]."/Quest_".$NumeroFi.".htm", "Questions|".$NumQuest."|<div id=\"div_question\" class=\"Question\">".intval($NumQuest).". ".$_POST["Question"]."</div>".$Options);
-				file_put_contents($_SESSION["Repertoire"]."/Rep_".$NumeroFi.".htm", "Reponse|".$_POST["BonneRep"]."|".$Details."");
+				file_put_contents($_SESSION["Repertoire"]."/Rep_".$NumeroFi.".htm", "Reponse|".$_POST["BonneRep"]."|".$_POST["Explication"]."");
 			}
 		}
 	}
